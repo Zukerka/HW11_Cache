@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function sum (a,b){
+            return a+b; 
+        }
+
+        function memorize(fn) {
+            const cache = {};
+
+            return function(...args) {
+                if (cache[args]) {
+                return console.log (cache[args]);
+            }
+
+            const result = fn.apply(this, args);
+            cache[args] = result;
+
+            return console.log(result);
+            };
+        }
+
+        const memorizeSum = memorize(sum);
+
+        memorizeSum(1, 2); 
+        memorizeSum(1, 2); 
+        memorizeSum(1, 3); 
+        memorizeSum(1, 2); 
+        memorizeSum(1, 3); 
+        memorizeSum(2, 2); 
+        memorizeSum(1, 2); 
+
+    </script>
+</body>
+</html>
